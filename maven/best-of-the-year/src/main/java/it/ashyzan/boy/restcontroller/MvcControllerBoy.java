@@ -41,16 +41,22 @@ public class MvcControllerBoy {
 		filmTre.setIdMovie(2);
 		
 		model.addAttribute("movie", filmUno);
+		List<Movie> bestmoviesList = new ArrayList<>();
 		
+		bestmoviesList.add(filmUno);
+		bestmoviesList.add(filmDue);
+		bestmoviesList.add(filmTre);
+		
+		model.addAttribute("movieList",bestmoviesList);
 		
 		return "bestmovies";
 		
 	}
 	
 	private List<Movie> getBestMovies() {
-		List<Movie> bestmoviesList = new ArrayList<>();
 		
-		return bestmoviesList;
+		
+		return "";
 	}
 
 
