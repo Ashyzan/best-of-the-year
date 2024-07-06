@@ -72,7 +72,7 @@ public class MvcControllerBoy {
 	@GetMapping("/movies/{id}")
 	public String show(@PathVariable("id") Integer idMovie, Model model) {
 		
-		model.addAttribute("idIntero", scegliFilm( idMovie));
+		model.addAttribute("idIntero", idMovie);
 		model.addAttribute("movieList", getBestMovies());
 		
 		return "/movies";
@@ -103,13 +103,7 @@ public class MvcControllerBoy {
 		return bestmoviesList;
 	}
 	
-	 // creo una funzione che accetta un parametro di tipo int e restituisce 
-	// un oggetto che ha come id il valore passato nella funzione
-		public int scegliFilm( int id) {
-		
-			return getBestMovies().indexOf(id);
-	
-		}
+
 	
 	
 	
