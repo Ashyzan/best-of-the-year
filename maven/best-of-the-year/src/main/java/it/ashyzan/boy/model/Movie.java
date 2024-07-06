@@ -1,5 +1,8 @@
 package it.ashyzan.boy.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Movie {
 	
 	private String titleMovie;
@@ -7,6 +10,8 @@ public class Movie {
 	private String authorMovie;
 	
 	private int idMovie;
+	
+	
 	
 	public Movie() {
 		
@@ -35,5 +40,7 @@ public class Movie {
 	public void setIdMovie(int idMovie) {
 		this.idMovie = idMovie;
 	}
+	
+	
 
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.ashyzan.boy.model.Movie;
@@ -24,8 +26,8 @@ public class MvcControllerBoy {
 	
 	
 	
-	@GetMapping ("/movies")
-	public String getBestMovies(Model model){
+	@GetMapping ("/moviestest")
+	public String getMoviesTest(Model model){
 		Movie filmUno = new Movie();
 		Movie filmDue = new Movie();
 		Movie filmTre = new Movie();
@@ -40,24 +42,77 @@ public class MvcControllerBoy {
 		filmTre.setAuthorMovie("Fratelli Wachoski");
 		filmTre.setIdMovie(2);
 		
+		List<Movie> bestmoviesList = new ArrayList<>();
+		
+		bestmoviesList.add(filmUno);
+		bestmoviesList.add(filmDue);
+		bestmoviesList.add(filmTre); 
+
 		model.addAttribute("movie", filmUno);
+		
+		model.addAttribute("movieList",bestmoviesList);
+		
+		return "moviestest";
+		
+	}
+	
+	@GetMapping ("/bestmovies")
+	public String getBestMovies(Model model){
+
+		
+		model.addAttribute("movieList", getBestMovies());
+		
+		return "bestmovies";
+		
+	}
+	
+	
+	 
+	
+	@GetMapping("/movies/{id}")
+	public String show(@PathVariable("id") Integer idMovie, Model model) {
+		
+		model.addAttribute("idIntero", scegliFilm( idMovie));
+		model.addAttribute("movieList", getBestMovies());
+		
+		return "/movies";
+	}
+
+	
+	private List<Movie> getBestMovies() {
+		Movie filmUno = new Movie();
+		Movie filmDue = new Movie();
+		Movie filmTre = new Movie();
+		
+		filmUno.setTitleMovie("Il quinto elemento");
+		filmUno.setAuthorMovie("Luc Besson");
+		filmUno.setIdMovie(0);
+		filmDue.setTitleMovie("Via col vento");
+		filmDue.setAuthorMovie("Victor Fleming");
+		filmDue.setIdMovie(1);
+		filmTre.setTitleMovie("Matrix");
+		filmTre.setAuthorMovie("Fratelli Wachoski");
+		filmTre.setIdMovie(2);
+		
 		List<Movie> bestmoviesList = new ArrayList<>();
 		
 		bestmoviesList.add(filmUno);
 		bestmoviesList.add(filmDue);
 		bestmoviesList.add(filmTre);
 		
-		model.addAttribute("movieList",bestmoviesList);
-		
-		return "bestmovies";
-		
+		return bestmoviesList;
 	}
 	
-	private List<Movie> getBestMovies() {
+	 // creo una funzione che accetta un parametro di tipo int e restituisce 
+	// un oggetto che ha come id il valore passato nella funzione
+		public int scegliFilm( int id) {
 		
-		
-		return "";
-	}
+			return getBestMovies().indexOf(id);
+	
+		}
+	
+	
+	
 
 
 }

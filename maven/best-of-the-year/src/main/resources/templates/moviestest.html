@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>	<!-- Bootstrap CSS -->
+		    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <title>best</title> 
+  </head>
+  <body>
+    <div>
+      <h1 th:text="'Best of the year by ' + ${name} + '!'"></h1>
+	  
+	  <h3 th:text="'Titolo Film: ' + ${movie.titleMovie}"></h3>
+	  
+	  <h3 th:text="'ID Film: ' + ${movie.idMovie}"></h3> 
+	  
+	  <h3 th:text="'Autore Regista Film: ' + ${movie.authorMovie}"></h3>
+	  
+	  <h3 th:text="'Ecco la lista dei film: ' + ${movieList[0].titleMovie}"></h3>
+	  
+	  <div th:if="${movieList.size() > 0}">The list is not empty</div>
+	  
+	  <div th:if="${movieList.size() <= 0}">The list is empty</div>
+    </div> 
+	
+	<ul>
+		<li th:each=" m : ${movieList}" th:text="${m.titleMovie}"> </li>
+	</ul>
+	<a th:href="@{/bestmovies}">Tutti i Best Films</a>
+  </body>
+</html>
