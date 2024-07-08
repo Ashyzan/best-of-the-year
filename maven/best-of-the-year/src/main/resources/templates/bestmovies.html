@@ -8,22 +8,38 @@
   <body>
     <div>
 
-	  <container>
-		<h3>Ecco la lista dei migliori film:</h3>
-			  
-			  <div th:if="${movieList.size() <= 0}">The list is empty</div>
-		    </div> 
+		<div class="container px-4 text-center">
+		  <div class="row gx-5">
+		    <div class="col mt-4">
+		     
+				
+				<h3>Ecco la lista dei migliori film:</h3>	  
+					  <div th:if="${movieList.size() <= 0}">The list is empty</div>
+						  
+										
+							<ul class="list-group">
+								<li class="list-group-item"
+									th:style="'list-style:none;'" >
+									
+									<a 									class="list-group-item"  
+									th:each=" m : ${movieList}" 
+									th:text="${m.titleMovie}" 
+									th:href="@{|/movies/${m.idMovie}|}"
+									th:style="'display:block;'"
+									>
+									
+								</a>								</li>
+											
+							</ul>
+						
+			</div>
+		    </div>	    
+		  </div>
+		</div>
+		
 			
-			<ul>
-				<li th:each=" m : ${movieList}" th:text="${m.titleMovie}"> </li>
-			</ul>
-			
-			<a th:href="@{http://www.thymeleaf/documentation.html}">Link di test esterno</a>
-			</br>
-			<a th:href="@{/bestmovies}">Tutti i Best Films</a>
-			</br>
-						<a th:href="@{/moviestest}">Pagina di test</a>
-	  </container>
+		
+
 	  
 	
 	<!-- Bootstrap Bundle with Popper -->
